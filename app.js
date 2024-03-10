@@ -24,7 +24,7 @@ const User = mongoose.model(
 
 
 const app = express();
-app.set("views", __dirname);
+app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
 app.use(session({ secret: "cats", resave: false, saveUninitialized: true }));
@@ -32,5 +32,7 @@ app.use(passport.session());
 app.use(express.urlencoded({ extended: false }));
 
 app.get("/", (req, res) => res.render("index"))
+
+app.get("/signup", (req, res) => res.render("sign-up-form"))
 
 app.listen(3000, () => console.log(`listening 3000`))
